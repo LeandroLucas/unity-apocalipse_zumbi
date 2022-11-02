@@ -4,34 +4,48 @@ using UnityEngine;
 
 public class ControlaInimigo : MonoBehaviour
 {
-
-    public GameObject Jogador;
     public float Velocidade = 5;
     public float DistanciaAtaque = 1.6f;
 
+    private GameObject jogador;
+    private Rigidbody rigidbodyInimigo;
+    private Animator animatorInimigo;
+    private ControlaJogador controlaJogador;
+
+    private void Start()
+    {
+        jogador = GameObject.FindWithTag("Player");
+        int geraTipoZumbi = Random.Range(1, 28);
+        transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
+
+        rigidbodyInimigo = GetComponent<Rigidbody>();
+        animatorInimigo = GetComponent<Animator>();
+        controlaJogador = jogador.GetComponent<ControlaJogador>();
+    }
+
     void FixedUpdate()
     {
-        float distancia = Vector3.Distance(transform.position, Jogador.transform.position);
-        Vector3 direcao = Jogador.transform.position - transform.position;
+        float distancia = Vector3.Distance(transform.position, jogador.transform.position);
+        Vector3 direcao = jogador.transform.position - transform.position;
 
         Quaternion novaRotacao = Quaternion.LookRotation(direcao);
 
-        GetComponent<Rigidbody>().MoveRotation(novaRotacao);
+        rigidbodyInimigo.MoveRotation(novaRotacao);
         if (distancia > DistanciaAtaque)
         {
-            GetComponent<Rigidbody>().MovePosition(GetComponent<Rigidbody>().position + (direcao.normalized * Velocidade * Time.deltaTime));
-            GetComponent<Animator>().SetBool("Atacando", false);
+            rigidbodyInimigo.MovePosition(rigidbodyInimigo.position + (direcao.normalized * Velocidade * Time.deltaTime));
+            animatorInimigo.SetBool("Atacando", false);
         }
         else
         {
-            GetComponent<Animator>().SetBool("Atacando", true);
+            animatorInimigo.SetBool("Atacando", true);
         }
     }
 
     void AtacaJogador()
     {
-        Jogador.GetComponent<ControlaJogador>().TextoGameOver.SetActive(true);
-        Jogador.GetComponent<ControlaJogador>().Vivo = false;
+        controlaJogador.TextoGameOver.SetActive(true);
+        controlaJogador.Vivo = false;
         Time.timeScale = 0;
     }
 }
