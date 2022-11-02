@@ -9,10 +9,15 @@ public class ControlaArma : MonoBehaviour
 
     public GameObject CanoDaArma;
 
+    private ControlaJogador controlaJogador;
+
+    private void Start() {
+        controlaJogador = GetComponent<ControlaJogador>();
+    }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && controlaJogador.Vivo)
         {
             Instantiate(Bala, CanoDaArma.transform.position, CanoDaArma.transform.rotation);
         }

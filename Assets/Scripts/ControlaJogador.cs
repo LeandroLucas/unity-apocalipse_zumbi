@@ -39,7 +39,7 @@ public class ControlaJogador : MonoBehaviour
 
         if (Vivo == false)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Submit"))
             {
                 SceneManager.LoadScene("game");
             }
