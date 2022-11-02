@@ -44,8 +44,8 @@ public class ControlaInimigo : MonoBehaviour
 
     void AtacaJogador()
     {
-        controlaJogador.TextoGameOver.SetActive(true);
-        controlaJogador.Vivo = false;
-        Time.timeScale = 0;
+        int dano = Random.Range(20, 31);
+        controlaJogador.ReceberDano(dano);
     }
+
 }

@@ -12,10 +12,12 @@ public class ControlaJogador : MonoBehaviour
 
     public GameObject TextoGameOver;
 
-    public bool Vivo = true;
+    public int Vida = 100;
 
+    public ControlaInterface ControlaInterface;
+
+    private bool Vivo = true;
     private Vector3 direcao;
-
     private Rigidbody rigidbodyJogador;
     private Animator animatorJogador;
 
@@ -67,5 +69,22 @@ public class ControlaJogador : MonoBehaviour
 
             rigidbodyJogador.MoveRotation(novaRotacao);
         }
+    }
+
+    public void ReceberDano(int dano)
+    {
+        Vida -= dano;
+        ControlaInterface.AtualizarSliderVidaJogador();
+        if (Vida <= 0)
+        {
+            TextoGameOver.SetActive(true);
+            Vivo = false;
+            Time.timeScale = 0;
+        }
+    }
+
+    public bool EstaVivo()
+    {
+        return Vivo;
     }
 }

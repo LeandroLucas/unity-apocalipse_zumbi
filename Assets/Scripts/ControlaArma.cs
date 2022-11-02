@@ -17,7 +17,7 @@ public class ControlaArma : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && controlaJogador.Vivo)
+        if (Input.GetButtonDown("Fire1") && controlaJogador.EstaVivo())
         {
             Instantiate(Bala, CanoDaArma.transform.position, CanoDaArma.transform.rotation);
         }
