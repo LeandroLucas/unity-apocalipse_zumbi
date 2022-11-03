@@ -2630,7 +2630,7 @@ Transform:
   - {fileID: 4925541059680036}
   - {fileID: 1318857575}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &706439697
 CapsuleCollider:
@@ -2683,7 +2683,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   TextoGameOver: {fileID: 0}
-  Vivo: 1
+  Vida: 100
+  ControlaInterface: {fileID: 0}
+  SomDeDano: {fileID: 8300000, guid: bc137ad860d2a224d8eec048be9c17e2, type: 3}
 --- !u!54 &706439698
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2714,6 +2716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bala: {fileID: 8851876875689053681, guid: e3145dfbb90cf6b4b958576a290bf9b9, type: 3}
   CanoDaArma: {fileID: 1318857574}
+  SomDeTiro: {fileID: 8300000, guid: c7341593555a0f04db6e56477b185b02, type: 3}
 --- !u!1 &1938851689004064
 GameObject:
   m_ObjectHideFlags: 0

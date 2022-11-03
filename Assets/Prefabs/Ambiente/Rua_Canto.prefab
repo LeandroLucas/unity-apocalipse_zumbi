@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33002879118170764}
   - component: {fileID: 23654509553597136}
   - component: {fileID: 1662531099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rua_Canto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33002879118170764
 MeshFilter:

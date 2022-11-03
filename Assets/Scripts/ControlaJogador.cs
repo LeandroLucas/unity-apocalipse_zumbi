@@ -16,6 +16,8 @@ public class ControlaJogador : MonoBehaviour
 
     public ControlaInterface ControlaInterface;
 
+    public AudioClip SomDeDano;
+
     private bool Vivo = true;
     private Vector3 direcao;
     private Rigidbody rigidbodyJogador;
@@ -31,14 +33,6 @@ public class ControlaJogador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float eixoX = Input.GetAxis("Horizontal");
-        float eixoZ = Input.GetAxis("Vertical");
-
-        direcao = new Vector3(eixoX, 0, eixoZ);
-
-        bool movendo = (direcao != Vector3.zero);
-        animatorJogador.SetBool("Movendo", movendo);
-
         if (Vivo == false)
         {
             if (Input.GetButtonDown("Submit"))
@@ -50,6 +44,14 @@ public class ControlaJogador : MonoBehaviour
 
     void FixedUpdate()
     {
+        float eixoX = Input.GetAxis("Horizontal");
+        float eixoZ = Input.GetAxis("Vertical");
+
+        direcao = new Vector3(eixoX, 0, eixoZ);
+
+        bool movendo = (direcao != Vector3.zero);
+        animatorJogador.SetBool("Movendo", movendo);
+
         rigidbodyJogador.MovePosition(rigidbodyJogador.position + (direcao * Time.deltaTime * Velocidade));
 
         Ray raio = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -75,6 +77,7 @@ public class ControlaJogador : MonoBehaviour
     {
         Vida -= dano;
         ControlaInterface.AtualizarSliderVidaJogador();
+        ControlaAudio.instancia.PlayOneShot(SomDeDano);
         if (Vida <= 0)
         {
             TextoGameOver.SetActive(true);
