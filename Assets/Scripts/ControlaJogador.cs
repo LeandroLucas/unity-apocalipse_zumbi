@@ -69,7 +69,7 @@ public class ControlaJogador : MonoBehaviour
             novaRotacao.x = rigidbodyJogador.rotation.x;
             novaRotacao.z = rigidbodyJogador.rotation.z;
 
-            rigidbodyJogador.MoveRotation(novaRotacao);
+            rigidbodyJogador.MoveRotation(novaRotacao.normalized);
         }
     }
 
