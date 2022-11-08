@@ -558,8 +558,11 @@ GameObject:
   - component: {fileID: 4941635705825534}
   - component: {fileID: 1851970969}
   - component: {fileID: 339102240}
-  - component: {fileID: 339102242}
   - component: {fileID: 339102241}
+  - component: {fileID: 339102242}
+  - component: {fileID: 1653222122876309293}
+  - component: {fileID: -4270612213018887789}
+  - component: {fileID: -8541382681209007880}
   m_Layer: 0
   m_Name: Zumbi
   m_TagString: Inimigo
@@ -644,20 +647,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &339102242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1063500868937916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 079bfdedef6d515448c68d32072839dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Velocidade: 5
-  DistanciaAtaque: 2
 --- !u!54 &339102241
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -674,6 +663,59 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &339102242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063500868937916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079bfdedef6d515448c68d32072839dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DistanciaAtaque: 2
+  SomDeMorte: {fileID: 8300000, guid: 928a7d2d8821f1f42b3bcb860acae2a5, type: 3}
+--- !u!114 &1653222122876309293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063500868937916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f498e35494665c64880d67c6d68eeb38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4270612213018887789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063500868937916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b7f9c03cc89cae4ebb7a3ff710cd1a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8541382681209007880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063500868937916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acc7adab971c20445b074134f54d5e92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Velocidade: 5
+  VidaInicial: 3
+  Vida: 0
 --- !u!1 &1065480718027956
 GameObject:
   m_ObjectHideFlags: 0

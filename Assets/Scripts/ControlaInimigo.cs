@@ -2,25 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControlaInimigo : MonoBehaviour
+public class ControlaInimigo : MonoBehaviour, IMatavel
 {
-    public float Velocidade = 5;
     public float DistanciaAtaque = 1.6f;
 
+    public AudioClip SomDeMorte;
     private GameObject jogador;
-    private Rigidbody rigidbodyInimigo;
-    private Animator animatorInimigo;
+
     private ControlaJogador controlaJogador;
+    private MovimentaPersonagem movimentaPersonagem;
+    private AnimacaoPersonagem animacaoPersonagem;
+    private Status status;
 
     private void Start()
     {
-        jogador = GameObject.FindWithTag("Player");
-        int geraTipoZumbi = Random.Range(1, 28);
-        transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
+        jogador = GameObject.FindWithTag(Tags.Jogador);
+        AleatorizarZumbi();
 
-        rigidbodyInimigo = GetComponent<Rigidbody>();
-        animatorInimigo = GetComponent<Animator>();
         controlaJogador = jogador.GetComponent<ControlaJogador>();
+        movimentaPersonagem = GetComponent<MovimentaPersonagem>();
+        animacaoPersonagem = GetComponent<AnimacaoPersonagem>();
+        status = GetComponent<Status>();
     }
 
     void FixedUpdate()
@@ -28,17 +30,16 @@ public class ControlaInimigo : MonoBehaviour
         float distancia = Vector3.Distance(transform.position, jogador.transform.position);
         Vector3 direcao = jogador.transform.position - transform.position;
 
-        Quaternion novaRotacao = Quaternion.LookRotation(direcao);
+        movimentaPersonagem.Rotacionar(direcao);
 
-        rigidbodyInimigo.MoveRotation(novaRotacao);
         if (distancia > DistanciaAtaque)
         {
-            rigidbodyInimigo.MovePosition(rigidbodyInimigo.position + (direcao.normalized * Velocidade * Time.deltaTime));
-            animatorInimigo.SetBool("Atacando", false);
+            movimentaPersonagem.Movimentar(direcao, status.Velocidade);
+            animacaoPersonagem.Atacar(false);
         }
         else
         {
-            animatorInimigo.SetBool("Atacando", true);
+            animacaoPersonagem.Atacar(true);
         }
     }
 
@@ -46,6 +47,27 @@ public class ControlaInimigo : MonoBehaviour
     {
         int dano = Random.Range(20, 31);
         controlaJogador.ReceberDano(dano);
+    }
+
+    void AleatorizarZumbi()
+    {
+        int geraTipoZumbi = Random.Range(1, 28);
+        transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
+    }
+
+    public void ReceberDano(int dano)
+    {
+        status.Vida -= dano;
+        if (status.Vida <= 0)
+        {
+            Morrer();
+        }
+    }
+
+    public void Morrer()
+    {
+        ControlaAudio.instancia.PlayOneShot(SomDeMorte);
+        Destroy(gameObject);
     }
 
 }

@@ -9,8 +9,6 @@ public class Bala : MonoBehaviour
 
     private Rigidbody rigidbodyBala;
 
-    public AudioClip SomDeMorte;
-
     private void Start()
     {
         rigidbodyBala = GetComponent<Rigidbody>();
@@ -25,8 +23,7 @@ public class Bala : MonoBehaviour
     {
         if (objetoDeColisao.tag == "Inimigo")
         {
-            ControlaAudio.instancia.PlayOneShot(SomDeMorte);
-            Destroy(objetoDeColisao.gameObject);
+            objetoDeColisao.GetComponent<ControlaInimigo>().ReceberDano(1);
         }
         Destroy(gameObject);
     }
