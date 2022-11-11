@@ -5,6 +5,7 @@ using UnityEngine;
 public class ControlaInimigo : MonoBehaviour, IMatavel
 {
     public float DistanciaAtaque = 1.6f;
+    public float DistanciaPerseguir = 15;
 
     public AudioClip SomDeMorte;
     private GameObject jogador;
@@ -13,6 +14,12 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     private MovimentaPersonagem movimentaPersonagem;
     private AnimacaoPersonagem animacaoPersonagem;
     private Status status;
+    private Vector3 posicaoAleatoria;
+    private int distanciaPosicaoAleatoria = 10;
+    private Vector3 direcao;
+    private float contadorVagar;
+    private float tempoEntrePosicoesAleatorias = 4;
+
 
     private void Start()
     {
@@ -28,19 +35,21 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     void FixedUpdate()
     {
         float distancia = Vector3.Distance(transform.position, jogador.transform.position);
-        Vector3 direcao = jogador.transform.position - transform.position;
 
-        movimentaPersonagem.Rotacionar(direcao);
-
-        if (distancia > DistanciaAtaque)
+        if (distancia > DistanciaPerseguir)
         {
-            movimentaPersonagem.Movimentar(direcao, status.Velocidade);
-            animacaoPersonagem.Atacar(false);
+            Vagar();
+        }
+        else if (distancia > DistanciaAtaque)
+        {
+            SeguirJogador();
         }
         else
         {
             animacaoPersonagem.Atacar(true);
         }
+        movimentaPersonagem.Rotacionar(direcao);
+        animacaoPersonagem.Movimentar(direcao.magnitude);
     }
 
     void AtacaJogador()
@@ -53,6 +62,38 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     {
         int geraTipoZumbi = Random.Range(1, 28);
         transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
+    }
+
+    void SeguirJogador()
+    {
+        direcao = jogador.transform.position - transform.position;
+
+        movimentaPersonagem.Movimentar(direcao, status.Velocidade);
+        animacaoPersonagem.Atacar(false);
+    }
+
+    void Vagar()
+    {
+        contadorVagar -= Time.deltaTime;
+        if (contadorVagar <= 0)
+        {
+            posicaoAleatoria = PosicaoAleatoria();
+            contadorVagar += tempoEntrePosicoesAleatorias;
+        }
+        bool pertoOSuficiente = Vector3.Distance(transform.position, posicaoAleatoria) <= 0.05;
+        if (!pertoOSuficiente)
+        {
+            direcao = posicaoAleatoria - transform.position;
+            movimentaPersonagem.Movimentar(direcao, status.Velocidade);
+        }
+    }
+
+    Vector3 PosicaoAleatoria()
+    {
+        Vector3 posicao = Random.insideUnitSphere * distanciaPosicaoAleatoria;
+        posicao += transform.position;
+        posicao.y = transform.position.y;
+        return posicao;
     }
 
     public void ReceberDano(int dano)
