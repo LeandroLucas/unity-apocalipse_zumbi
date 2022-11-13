@@ -1,20 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ControlaJogador : MonoBehaviour, IMatavel
 {
 
     public LayerMask MascaraChao;
 
-    public GameObject TextoGameOver;
-
     public ControlaInterface ControlaInterface;
 
     public AudioClip SomDeDano;
-
-    private bool Vivo = true;
     private Vector3 direcao;
     private AnimacaoPersonagem animacaoPersonagem;
     private MovimentaJogador movimentaPersonagem;
@@ -23,22 +18,9 @@ public class ControlaJogador : MonoBehaviour, IMatavel
 
     void Start()
     {
-        Time.timeScale = 1;
         movimentaPersonagem = GetComponent<MovimentaJogador>();
         animacaoPersonagem = GetComponent<AnimacaoPersonagem>();
         Status = GetComponent<Status>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Vivo == false)
-        {
-            if (Input.GetButtonDown("Submit"))
-            {
-                SceneManager.LoadScene("game");
-            }
-        }
     }
 
     void FixedUpdate()
@@ -69,13 +51,7 @@ public class ControlaJogador : MonoBehaviour, IMatavel
 
     public void Morrer()
     {
-        TextoGameOver.SetActive(true);
-        Vivo = false;
-        Time.timeScale = 0;
+        ControlaInterface.GameOver();
     }
 
-    public bool EstaVivo()
-    {
-        return Vivo;
-    }
 }

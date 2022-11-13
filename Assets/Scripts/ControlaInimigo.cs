@@ -46,6 +46,7 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
         }
         else
         {
+            direcao = jogador.transform.position - transform.position;
             animacaoPersonagem.Atacar(true);
         }
         movimentaPersonagem.Rotacionar(direcao);

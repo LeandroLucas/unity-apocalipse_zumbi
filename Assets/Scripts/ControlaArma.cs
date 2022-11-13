@@ -13,13 +13,15 @@ public class ControlaArma : MonoBehaviour
 
     private ControlaJogador controlaJogador;
 
-    private void Start() {
+    private void Start()
+    {
         controlaJogador = GetComponent<ControlaJogador>();
     }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && controlaJogador.EstaVivo())
+        if (Input.GetButtonDown("Fire1"))
         {
             Instantiate(Bala, CanoDaArma.transform.position, CanoDaArma.transform.rotation);
             ControlaAudio.instancia.PlayOneShot(SomDeTiro);
