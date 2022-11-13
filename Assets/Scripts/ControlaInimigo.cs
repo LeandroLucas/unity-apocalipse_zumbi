@@ -6,10 +6,11 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
 {
     public float DistanciaAtaque = 1.6f;
     public float DistanciaPerseguir = 15;
-
     public AudioClip SomDeMorte;
-    private GameObject jogador;
+    public GameObject KitMedico;
 
+    private ControlaInterface controlaInterface;
+    private GameObject jogador;
     private ControlaJogador controlaJogador;
     private MovimentaPersonagem movimentaPersonagem;
     private AnimacaoPersonagem animacaoPersonagem;
@@ -19,6 +20,7 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     private Vector3 direcao;
     private float contadorVagar;
     private float tempoEntrePosicoesAleatorias = 4;
+    private float porcentagemGerarKitMedico = 0.1f;
 
 
     private void Start()
@@ -30,6 +32,7 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
         movimentaPersonagem = GetComponent<MovimentaPersonagem>();
         animacaoPersonagem = GetComponent<AnimacaoPersonagem>();
         status = GetComponent<Status>();
+        controlaInterface = GameObject.FindObjectOfType(typeof(ControlaInterface)) as ControlaInterface;
     }
 
     void FixedUpdate()
@@ -108,8 +111,20 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
 
     public void Morrer()
     {
+        VerificaGeracaoKitMedico(porcentagemGerarKitMedico);
         ControlaAudio.instancia.PlayOneShot(SomDeMorte);
+
+        controlaInterface.AtualizarQuantidadeZumbisMortos();
+
         Destroy(gameObject);
+    }
+
+    private void VerificaGeracaoKitMedico(float porcentagem)
+    {
+        if (Random.value <= porcentagem)
+        {
+            Instantiate(KitMedico, transform.position, transform.rotation);
+        }
     }
 
 }
