@@ -16,7 +16,16 @@ public class AnimacaoPersonagem : MonoBehaviour
         meuAnimator.SetBool("Atacando", estado);
     }
 
-    public void Movimentar(float valorMovimento) {
+    public void Movimentar(float valorMovimento)
+    {
         meuAnimator.SetFloat("Movendo", valorMovimento);
+    }
+
+    /**
+    * Tipos de morte: 1 ou 2
+    */
+    public void Morrer(int tipoMorte)
+    {
+        meuAnimator.SetInteger("Morrer", tipoMorte);
     }
 }

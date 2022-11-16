@@ -24,4 +24,11 @@ public class MovimentaPersonagem : MonoBehaviour
         novaRotacao.z = rigidbodyPersonagem.rotation.z;
         rigidbodyPersonagem.MoveRotation(novaRotacao.normalized);
     }
+
+    public void Morrer()
+    {
+        // rigidbodyPersonagem.constraints = RigidbodyConstraints.None;
+        rigidbodyPersonagem.velocity = Vector3.zero;
+        GetComponent<Collider>().enabled = false;
+    }
 }
