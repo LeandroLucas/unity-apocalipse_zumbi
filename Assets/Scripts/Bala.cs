@@ -23,7 +23,7 @@ public class Bala : MonoBehaviour
     {
         if (objetoDeColisao.tag == "Inimigo")
         {
-            objetoDeColisao.GetComponent<ControlaInimigo>().ReceberDano(1);
+            objetoDeColisao.GetComponent<IMatavel>().ReceberDano(1);
         }
         Destroy(gameObject);
     }

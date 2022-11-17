@@ -28,7 +28,9 @@ public class MovimentaPersonagem : MonoBehaviour
     public void Morrer()
     {
         // rigidbodyPersonagem.constraints = RigidbodyConstraints.None;
-        rigidbodyPersonagem.velocity = Vector3.zero;
+        if(!rigidbodyPersonagem.isKinematic) {
+            rigidbodyPersonagem.velocity = Vector3.zero;
+        }
         GetComponent<Collider>().enabled = false;
     }
 }
