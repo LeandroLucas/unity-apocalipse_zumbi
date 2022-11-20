@@ -54,8 +54,8 @@ public class ControlaInterface : MonoBehaviour
         }
         else
         {
-            min = pegarMin(Time.timeSinceLevelLoad);
-            seg = pegarSeg(Time.timeSinceLevelLoad);
+            min = pegarMin(tempoPontuacaoSalvo);
+            seg = pegarSeg(tempoPontuacaoSalvo);
         }
         TextoRecordeTempoSobrevivencia.text = string.Format("Seu melhor tempo é {0} minuto(s) e {1} segundo(s)", min, seg);
     }
@@ -67,7 +67,7 @@ public class ControlaInterface : MonoBehaviour
 
     int pegarSeg(float timeInSeconds)
     {
-        return (int)(Time.timeSinceLevelLoad % 60);
+        return (int)(timeInSeconds % 60);
     }
 
     public void Reiniciar()
