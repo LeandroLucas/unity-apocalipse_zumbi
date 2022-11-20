@@ -12,6 +12,7 @@ public class Bala : MonoBehaviour
     private void Start()
     {
         rigidbodyBala = GetComponent<Rigidbody>();
+        Destroy(this, 10);
     }
 
     void FixedUpdate()
