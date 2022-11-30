@@ -8,6 +8,7 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     public float DistanciaPerseguir = 15;
     public AudioClip SomDeMorte;
     public GameObject KitMedico;
+    public GameObject ParticulaSangue;
 
     private ControlaInterface controlaInterface;
     private GameObject jogador;
@@ -60,7 +61,8 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
     void AtacaJogador()
     {
         int dano = Random.Range(20, 31);
-        controlaJogador.ReceberDano(dano);
+        Quaternion rotacaoAtaque = Quaternion.LookRotation(-transform.forward);
+        controlaJogador.ReceberDano(transform.position, rotacaoAtaque, dano);
     }
 
     void AleatorizarZumbi()
@@ -101,9 +103,10 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
         return posicao;
     }
 
-    public void ReceberDano(int dano)
+    public void ReceberDano(Vector3 posicao, Quaternion rotacao, int dano)
     {
         status.Vida -= dano;
+        Sangrar(posicao, rotacao);
         if (status.Vida <= 0)
         {
             Morrer();
@@ -134,4 +137,8 @@ public class ControlaInimigo : MonoBehaviour, IMatavel
         }
     }
 
+    private void Sangrar(Vector3 posicao, Quaternion rotacao)
+    {
+        Instantiate(ParticulaSangue, posicao, rotacao);
+    }
 }

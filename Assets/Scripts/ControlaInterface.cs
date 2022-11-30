@@ -17,6 +17,7 @@ public class ControlaInterface : MonoBehaviour
 
     public Text TextoQuantidadeZumbisMortos;
 
+    public Text TextoChefeAparece;
     private float tempoPontuacaoSalvo;
     private int quantidadeZumbisMortos;
 
@@ -79,6 +80,32 @@ public class ControlaInterface : MonoBehaviour
     {
         quantidadeZumbisMortos++;
         TextoQuantidadeZumbisMortos.text = string.Format("x {0}", quantidadeZumbisMortos);
+    }
+
+    public void AparecerTextoDoChefeCriado()
+    {
+        StartCoroutine(ExibirTextoPor(TextoChefeAparece, 1));
+    }
+
+    IEnumerator ExibirTextoPor(Text texto, float tempoDeSumico)
+    {
+        texto.gameObject.SetActive(true);
+        Color corTexto = texto.color;
+        corTexto.a = 1;
+        texto.color = corTexto;
+        yield return new WaitForSeconds(1);
+        float contador = 0;
+        while (texto.color.a > 0)
+        {
+            contador += (Time.deltaTime / tempoDeSumico);
+            corTexto.a = Mathf.Lerp(1, 0, contador);
+            texto.color = corTexto;
+            if (texto.color.a <= 0)
+            {
+                texto.gameObject.SetActive(false);
+            }
+            yield return null;
+        }
     }
 
 }

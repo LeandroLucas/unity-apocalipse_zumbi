@@ -24,7 +24,8 @@ public class Bala : MonoBehaviour
     {
         if (objetoDeColisao.tag == "Inimigo")
         {
-            objetoDeColisao.GetComponent<IMatavel>().ReceberDano(1);
+            Quaternion rotacaoBala = Quaternion.LookRotation(transform.forward);
+            objetoDeColisao.GetComponent<IMatavel>().ReceberDano(transform.position, rotacaoBala, 1);
         }
         Destroy(gameObject);
     }

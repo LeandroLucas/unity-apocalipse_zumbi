@@ -678,6 +678,7 @@ MonoBehaviour:
   DistanciaPerseguir: 15
   SomDeMorte: {fileID: 8300000, guid: 928a7d2d8821f1f42b3bcb860acae2a5, type: 3}
   KitMedico: {fileID: 1060151288946202, guid: 6150c6f66b7034ec5b3672478195682a, type: 3}
+  ParticulaSangue: {fileID: 2500459565340796064, guid: 860aeb0759505db44aec12140f4bacf6, type: 3}
   meuGerador: {fileID: 0}
 --- !u!114 &1653222122876309293
 MonoBehaviour:

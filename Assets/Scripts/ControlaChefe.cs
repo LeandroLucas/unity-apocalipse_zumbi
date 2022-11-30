@@ -17,6 +17,7 @@ public class ControlaChefe : MonoBehaviour, IMatavel
     public Slider SliderVida;
     public Image SliderFillImage;
     public Color CorVidaMaxima, CorVidaMinima;
+    public GameObject ParticulaSangue;
 
     private void Start()
     {
@@ -51,13 +52,15 @@ public class ControlaChefe : MonoBehaviour, IMatavel
     public void AtacaJogador()
     {
         int dano = Random.Range(30, 41);
-        jogador.GetComponent<ControlaJogador>().ReceberDano(dano);
+        Quaternion rotacaoAtaque = Quaternion.LookRotation(-transform.forward);
+        jogador.GetComponent<ControlaJogador>().ReceberDano(transform.position, rotacaoAtaque, dano);
     }
 
-    public void ReceberDano(int dano)
+    public void ReceberDano(Vector3 posicao, Quaternion rotacao, int dano)
     {
         status.Vida -= dano;
         AtualizarInterface();
+        Sangrar(posicao, rotacao);
         if (status.Vida <= 0)
         {
             Morrer();
@@ -82,5 +85,10 @@ public class ControlaChefe : MonoBehaviour, IMatavel
         SliderVida.value = status.Vida;
         float porcentagemVida = (float)status.Vida / status.VidaInicial;
         SliderFillImage.color = Color.Lerp(CorVidaMinima, CorVidaMaxima, porcentagemVida);
+    }
+
+    private void Sangrar(Vector3 posicao, Quaternion rotacao)
+    {
+        Instantiate(ParticulaSangue, posicao, rotacao);
     }
 }

@@ -519,6 +519,7 @@ MonoBehaviour:
   SliderFillImage: {fileID: 251707308}
   CorVidaMaxima: {r: 0.27450982, g: 0.9333334, b: 0.22352943, a: 1}
   CorVidaMinima: {r: 0.9622642, g: 0.20635968, b: 0.031772893, a: 1}
+  ParticulaSangue: {fileID: 2500459565340796064, guid: 860aeb0759505db44aec12140f4bacf6, type: 3}
 --- !u!1 &1065480718027956
 GameObject:
   m_ObjectHideFlags: 0

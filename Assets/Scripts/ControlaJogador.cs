@@ -37,7 +37,7 @@ public class ControlaJogador : MonoBehaviour, IMatavel, ICuravel
         movimentaPersonagem.RotacionarJogador(MascaraChao);
     }
 
-    public void ReceberDano(int dano)
+    public void ReceberDano(Vector3 posicao, Quaternion rotacao, int dano)
     {
         Status.Vida -= dano;
 
