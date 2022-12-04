@@ -15,4 +15,4 @@ TODO
 
 ## Informações Técnicas
 
-[Unity](https://unity.com/) version: 2022.1.21f1
+[Unity](https://unity.com/) version: 2021.3.12f1
