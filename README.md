@@ -11,8 +11,25 @@ Projeto desenvolvido com o objetivo de aprender mais sobre o motor Unity durante
 
 ## Imagens
 
-TODO
+### Início
+<p align="center">
+  <img title="Começo do jogo" src='./docs/imgs/inicio.gif?raw=true' />
+</p>
 
-## Informações Técnicas
+### Vida do Jogador
+<p align="center">
+  <img title="Jogador recebe dano" src='./docs/imgs/recebe_dano.gif?raw=true' />
+</p>
 
+### Recuperação de Vida
+<p align="center">
+  <img title="Jogador recupera vida" src='./docs/imgs/recupera_vida.gif?raw=true' />
+</p>
+
+### Chefe
+<p align="center">
+  <img title="Chefe aparece" src='./docs/imgs/chefe.gif?raw=true' />
+</p>
+
+## Informações
 [Unity](https://unity.com/) version: 2021.3.12f1
